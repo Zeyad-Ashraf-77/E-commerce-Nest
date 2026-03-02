@@ -1,0 +1,1808 @@
+{
+  "info": {
+    "_postman_id": "f7aa6c86-25a1-4a2f-9f6b-cea6fc844a66",
+    "name": "E-Commers Nest",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40304579"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "SignUp",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"fName\": \"Zeyad\",\r\n    \"lName\": \"Ashraf\",\r\n    \"email\": \"zeyadaltantawy365@gmail.com\",\r\n    \"password\": \"123123123\",\r\n    \"phone\":\"01065767412\",\r\n    \"address\":\"elmahala\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/users",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "reSendOtp",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"zeyadaltantawy365@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/users/resend-otp",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "users",
+                "resend-otp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "confirmEmail",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"zeyadaltantawy365@gmail.com\",\r\n    \"otp\":\"572710\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/users/Confirm-email",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "users",
+                "Confirm-email"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  " const {accessToken,refreshToken}=pm.response.json();\r",
+                  "pm.environment.set(\"accessToken\", accessToken);\r",
+                  "pm.environment.set(\"refreshToken\", refreshToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "berear dkbsdakjvbkdsvksdlnkan",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"zeyadaltantawy365@gmail.com\",\r\n    \"password\":\"123123123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/users/Login",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "users",
+                "Login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/users/profile",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "users",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upluode Image",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/LUCES GAMER.jpeg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/users/upload",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "users",
+                "upload"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Brand",
+      "item": [
+        {
+          "name": "Create Brand",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/2eadaaec-1591-4277-81d7-340e32ddc70e.jpeg"
+                },
+                {
+                  "key": "name",
+                  "value": "Oppo 53",
+                  "type": "text",
+                  "uuid": "a8f8c5c6-5a86-44c4-b3eb-a081a6407e29"
+                },
+                {
+                  "key": "slogan",
+                  "value": "justf",
+                  "type": "text",
+                  "uuid": "d0df24fb-1f6a-496d-9262-992bee4e4325"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Brand",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"oppo555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/brands/update/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "update",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update brand Image",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "ad32ac88-7f01-484b-be2d-cb54b7c35cd6",
+                  "src": "/C:/Users/Zeyad/Downloads/35abe5c5-811d-4964-b2f7-db0ea2bc69a4.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands/updateImage/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "updateImage",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Freaze Brand",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/brands/restore/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "restore",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delate Brand",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/brands/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/0663361f-009f-4ab0-91cc-f724efe8eaa9.jpeg"
+                },
+                {
+                  "key": "name",
+                  "value": "Oppo 5",
+                  "type": "text",
+                  "uuid": "a8f8c5c6-5a86-44c4-b3eb-a081a6407e29",
+                  "disabled": true
+                },
+                {
+                  "key": "slogan",
+                  "value": "justfg",
+                  "type": "text",
+                  "uuid": "d0df24fb-1f6a-496d-9262-992bee4e4325",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands?search=oppo",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "oppo"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "Create Cart",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"productId\":\"697b4eb2d03e2961d4628744\",\r\n    \"quantity\":\"5\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/cart",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "cart"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Quantaty",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"quantity\":\"9\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/cart/update/697b4eb2d03e2961d4628744",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "cart",
+                "update",
+                "697b4eb2d03e2961d4628744"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update brand Image",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "ad32ac88-7f01-484b-be2d-cb54b7c35cd6",
+                  "src": "/C:/Users/Zeyad/Downloads/35abe5c5-811d-4964-b2f7-db0ea2bc69a4.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands/updateImage/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "updateImage",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Clear Cart",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/cart/clear",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "cart",
+                "clear"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delate Product",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/cart/697b51cdd2defc85dd45cbde",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "cart",
+                "697b51cdd2defc85dd45cbde"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/0663361f-009f-4ab0-91cc-f724efe8eaa9.jpeg"
+                },
+                {
+                  "key": "name",
+                  "value": "Oppo 5",
+                  "type": "text",
+                  "uuid": "a8f8c5c6-5a86-44c4-b3eb-a081a6407e29",
+                  "disabled": true
+                },
+                {
+                  "key": "slogan",
+                  "value": "justfg",
+                  "type": "text",
+                  "uuid": "d0df24fb-1f6a-496d-9262-992bee4e4325",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands?search=oppo",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "oppo"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "mainImage",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/2eadaaec-1591-4277-81d7-340e32ddc70e.jpeg"
+                },
+                {
+                  "key": "name",
+                  "value": "Oppo",
+                  "type": "text",
+                  "uuid": "a8f8c5c6-5a86-44c4-b3eb-a081a6407e29"
+                },
+                {
+                  "key": "discraption",
+                  "value": "justffghdfhfdfdhfdhfdhdfdfbksdabksdafbjsdalk;nglk;sbnglko;sdan",
+                  "type": "text",
+                  "uuid": "d0df24fb-1f6a-496d-9262-992bee4e4325"
+                },
+                {
+                  "key": "subImages",
+                  "type": "file",
+                  "uuid": "218fe95e-1dd6-493d-bf84-0c4d2892c9f7",
+                  "src": [
+                    "/C:/Users/Zeyad/Downloads/0663361f-009f-4ab0-91cc-f724efe8eaa9.jpeg",
+                    "/C:/Users/Zeyad/Downloads/2eadaaec-1591-4277-81d7-340e32ddc70e.jpeg",
+                    "/C:/Users/Zeyad/Downloads/06b9534a-f9b8-4d72-ad63-9a04169eed4b.jpeg"
+                  ],
+                  "disabled": true
+                },
+                {
+                  "key": "price",
+                  "value": "100",
+                  "type": "text",
+                  "uuid": "658fdd38-b647-4d2e-8c0d-1a3076606f20"
+                },
+                {
+                  "key": "discount",
+                  "value": "1",
+                  "type": "text",
+                  "uuid": "7e495c09-9ab7-49af-b5fa-8f088ca9b6d7"
+                },
+                {
+                  "key": "brand",
+                  "value": "6976329a0a4286583c0ba607",
+                  "type": "text",
+                  "uuid": "9c1e5963-a24a-47b9-b08d-64b1a0ce1310"
+                },
+                {
+                  "key": "category",
+                  "value": "6979ef6d10f9c5e9ad846be6",
+                  "type": "text",
+                  "uuid": "5ef4a4a7-7797-4758-8ac2-a55813cc4990"
+                },
+                {
+                  "key": "subCategory",
+                  "value": "697b4dc5d03e2961d4628738",
+                  "type": "text",
+                  "uuid": "0e25fa87-30c2-4ffb-a015-0d1c67b45d51"
+                },
+                {
+                  "key": "stock",
+                  "value": "5",
+                  "type": "text",
+                  "uuid": "5ac4c0ce-877b-404e-aba9-1e1051617334"
+                },
+                {
+                  "key": "quantity",
+                  "value": "2",
+                  "type": "text",
+                  "uuid": "fbcf30ff-36ef-4184-80d5-f518f79b5152"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/products",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Product",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"oppo5556666666665\",\r\n    \"price\": \"55555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/products/697b51cdd2defc85dd45cbde",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "products",
+                "697b51cdd2defc85dd45cbde"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update Product Image",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "ad32ac88-7f01-484b-be2d-cb54b7c35cd6",
+                  "src": "/C:/Users/Zeyad/Downloads/35abe5c5-811d-4964-b2f7-db0ea2bc69a4.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands/updateImage/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "updateImage",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Freaze Ptoduct",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/brands/restore/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "restore",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delate Ptoduct",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/brands/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Product",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/0663361f-009f-4ab0-91cc-f724efe8eaa9.jpeg"
+                },
+                {
+                  "key": "name",
+                  "value": "Oppo 5",
+                  "type": "text",
+                  "uuid": "a8f8c5c6-5a86-44c4-b3eb-a081a6407e29",
+                  "disabled": true
+                },
+                {
+                  "key": "slogan",
+                  "value": "justfg",
+                  "type": "text",
+                  "uuid": "d0df24fb-1f6a-496d-9262-992bee4e4325",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands?search=oppo",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "oppo"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "item": [
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/06b9534a-f9b8-4d72-ad63-9a04169eed4b.jpeg"
+                },
+                {
+                  "key": "name",
+                  "value": "Oppo 5",
+                  "type": "text",
+                  "uuid": "a8f8c5c6-5a86-44c4-b3eb-a081a6407e29"
+                },
+                {
+                  "key": "slogan",
+                  "value": "justfg",
+                  "type": "text",
+                  "uuid": "d0df24fb-1f6a-496d-9262-992bee4e4325"
+                },
+                {
+                  "key": "brands[0]",
+                  "value": "697632fb5945dfb02329e33d",
+                  "type": "text",
+                  "uuid": "093a5bf4-3841-4023-bbc9-a7fe48faa4bc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/categories",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "categories"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"oppo555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/brands/update/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "update",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update Category Image",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "ad32ac88-7f01-484b-be2d-cb54b7c35cd6",
+                  "src": "/C:/Users/Zeyad/Downloads/35abe5c5-811d-4964-b2f7-db0ea2bc69a4.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands/updateImage/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "updateImage",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Freaze Category",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/brands/restore/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "restore",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delate  Category",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/brands/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "search Category",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/0663361f-009f-4ab0-91cc-f724efe8eaa9.jpeg"
+                },
+                {
+                  "key": "name",
+                  "value": "Oppo 5",
+                  "type": "text",
+                  "uuid": "a8f8c5c6-5a86-44c4-b3eb-a081a6407e29",
+                  "disabled": true
+                },
+                {
+                  "key": "slogan",
+                  "value": "justfg",
+                  "type": "text",
+                  "uuid": "d0df24fb-1f6a-496d-9262-992bee4e4325",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands?search=oppo",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "oppo"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "sub_Category",
+      "item": [
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/LUCES GAMER.jpeg"
+                },
+                {
+                  "key": "name",
+                  "value": "Oppo 555",
+                  "type": "text",
+                  "uuid": "a8f8c5c6-5a86-44c4-b3eb-a081a6407e29"
+                },
+                {
+                  "key": "slogan",
+                  "value": "justfg",
+                  "type": "text",
+                  "uuid": "d0df24fb-1f6a-496d-9262-992bee4e4325",
+                  "disabled": true
+                },
+                {
+                  "key": "category[0]",
+                  "value": "6979ef6d10f9c5e9ad846be6",
+                  "type": "text",
+                  "uuid": "093a5bf4-3841-4023-bbc9-a7fe48faa4bc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/subcategories",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "subcategories"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"oppo555\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/brands/update/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "update",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update Category Image",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "ad32ac88-7f01-484b-be2d-cb54b7c35cd6",
+                  "src": "/C:/Users/Zeyad/Downloads/35abe5c5-811d-4964-b2f7-db0ea2bc69a4.jpg"
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands/updateImage/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "updateImage",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Freaze Category",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/brands/restore/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "restore",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delate  Category",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/brands/6975ff719ffa2a745bbd9e4d",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands",
+                "6975ff719ffa2a745bbd9e4d"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "search Category",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix}} {{accessToken}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "attachment",
+                  "type": "file",
+                  "uuid": "4862a18e-3cec-4e02-b118-3d98f59d9729",
+                  "src": "/C:/Users/Zeyad/Downloads/0663361f-009f-4ab0-91cc-f724efe8eaa9.jpeg"
+                },
+                {
+                  "key": "name",
+                  "value": "Oppo 5",
+                  "type": "text",
+                  "uuid": "a8f8c5c6-5a86-44c4-b3eb-a081a6407e29",
+                  "disabled": true
+                },
+                {
+                  "key": "slogan",
+                  "value": "justfg",
+                  "type": "text",
+                  "uuid": "d0df24fb-1f6a-496d-9262-992bee4e4325",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "localhost:3000/brands?search=oppo",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "brands"
+              ],
+              "query": [
+                {
+                  "key": "attachment",
+                  "value": null,
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "oppo"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "WishLst",
+      "item": [
+        {
+          "name": "Add to Wish List",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"zeyadaltantawy365@gmail.com\",\r\n    \"password\":\"123123123\"\r\n}"
+            },
+            "url": {
+              "raw": "localhost:3000/products/wishlist/697b51cdd2defc85dd45cbde",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "products",
+                "wishlist",
+                "697b51cdd2defc85dd45cbde"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Coupon",
+      "item": [
+        {
+          "name": "Create Coupon",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"code\": \"zeyadd\",\r\n    \"amount\":20,\r\n    \"fromDate\":\"2026-3-30\",\r\n    \"toDate\":\"2026-5-3\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/coupons",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "coupons"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"address\":\"elmahala\",\r\n    \"phone\":\"01065767412\",\r\n    \"paymentMethod\":\"card\",\r\n    \"couponCode\":\"zeyad\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "localhost:3000/order",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "order"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Payment Woth Stripe",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/order/stripe/69a51d100c22494b5dd0a978",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "order",
+                "stripe",
+                "69a51d100c22494b5dd0a978"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancell Order",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "authorization",
+                "value": "{{prefix_admin}} {{accessToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "localhost:3000/order/69a51d100c22494b5dd0a978",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "order",
+                "69a51d100c22494b5dd0a978"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
